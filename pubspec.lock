@@ -303,10 +303,10 @@ packages:
     dependency: "direct main"
     description:
       name: kratos_plugin
-      sha256: "0160e0e03d18ff32760a7645b505beee24f65af15a391c3bdf6bcc280b63009e"
+      sha256: "05d34b5bd55c28a2a4f6917cee9ef0a7cb5af3283887df914bd23457598fcefb"
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.1"
+    version: "0.0.2"
   lints:
     dependency: transitive
     description:

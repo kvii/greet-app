@@ -4,13 +4,14 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'greeter.g.dart';
 
-/// The request message containing the user's name.
+/// HelloRequest 类型定义了打招呼参数类型
 @JsonSerializable()
 class HelloRequest {
   const HelloRequest({
     required this.name,
   });
 
+  /// 用户名
   final String name;
 
   factory HelloRequest.fromJson(Map<String, dynamic> json) {
@@ -20,13 +21,14 @@ class HelloRequest {
   Map<String, dynamic> toJson() => _$HelloRequestToJson(this);
 }
 
-/// The response message containing the greetings
+/// HelloReply 类型是打招呼的返回信息类型
 @JsonSerializable()
 class HelloReply {
   const HelloReply({
     required this.message,
   });
 
+  /// 响应信息
   final String message;
 
   factory HelloReply.fromJson(Map<String, dynamic> json) {

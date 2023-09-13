@@ -53,6 +53,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   bool processing = false;
 
+  final _formKey = GlobalKey<FormState>();
+
   Future<void> _sendMessage() async {
     if (processing) {
       throw '重复调用';
@@ -62,6 +64,11 @@ class _MyHomePageState extends State<MyHomePage> {
     });
 
     try {
+      final ok = _formKey.currentState!.validate();
+      if (!ok) {
+        return;
+      }
+
       final reply = await _greeter.sayHello(
         HelloRequest(name: _controller.text),
       );
@@ -81,6 +88,11 @@ class _MyHomePageState extends State<MyHomePage> {
         processing = false;
       });
     }
+  }
+
+  String? _nameNotEmpty(String? value) {
+    if (value == null || value.isEmpty) return '名称不能为空';
+    return null;
   }
 
   @override
@@ -103,12 +115,17 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            TextField(
-              controller: _controller,
-              onEditingComplete: _sendMessage,
-              textInputAction: TextInputAction.search,
-              autofocus: true,
-              enabled: !processing,
+            Form(
+              key: _formKey,
+              child: TextFormField(
+                controller: _controller,
+                onEditingComplete: _sendMessage,
+                textInputAction: TextInputAction.search,
+                autofocus: true,
+                enabled: !processing,
+                decoration: const InputDecoration(hintText: 'your name'),
+                validator: _nameNotEmpty,
+              ),
             ),
             if (_message != null) Text(_message),
           ],

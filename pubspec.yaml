@@ -36,7 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   json_annotation: ^4.8.1
   http: ^1.1.0
-  kratos_plugin: ^0.0.1
+  kratos_plugin: ^0.0.2
 
 dev_dependencies:
   flutter_test:
